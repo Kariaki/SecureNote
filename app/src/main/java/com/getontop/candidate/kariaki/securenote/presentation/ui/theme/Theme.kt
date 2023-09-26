@@ -1,4 +1,4 @@
-package com.getontop.candidate.kariaki.securenote.ui.theme
+package com.getontop.candidate.kariaki.securenote.presentation.ui.theme
 
 import android.app.Activity
 import android.os.Build

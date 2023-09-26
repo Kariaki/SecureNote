@@ -5,6 +5,11 @@ import androidx.room.Room
 import com.getontop.candidate.kariaki.securenote.data.local.database.AppRoomDatabase
 import com.getontop.candidate.kariaki.securenote.data.local.database.dao.NoteDao
 import com.getontop.candidate.kariaki.securenote.domain.repository.NoteRepository
+import com.getontop.candidate.kariaki.securenote.domain.usecases.BaseUseCase
+import com.getontop.candidate.kariaki.securenote.domain.usecases.DeleteNoteUseCase
+import com.getontop.candidate.kariaki.securenote.domain.usecases.GetAllNotesUseCase
+import com.getontop.candidate.kariaki.securenote.domain.usecases.InsertNoteUseCase
+import com.getontop.candidate.kariaki.securenote.domain.usecases.UpdateNoteUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -40,4 +45,13 @@ object HiltModule {
             noteDao
         )
     }
+
+    @Singleton
+    @Provides
+    fun provideBaseUseCase(repository: NoteRepository): BaseUseCase = BaseUseCase(
+        DeleteNoteUseCase(repository),
+        GetAllNotesUseCase(repository),
+        InsertNoteUseCase(repository),
+        UpdateNoteUseCase(repository)
+    )
 }
