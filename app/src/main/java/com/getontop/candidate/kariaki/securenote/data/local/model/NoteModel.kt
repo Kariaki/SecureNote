@@ -8,8 +8,8 @@ data class NoteModel(
     val description: String,
     @PrimaryKey(autoGenerate = true)
     val id: Int? = null,
-    val timestamp:Long,
-    val createdAt:String,
+    val timestamp:Long = 0,
+    val createdAt:String? =null,
 ) {
     constructor(
         tittle: String,

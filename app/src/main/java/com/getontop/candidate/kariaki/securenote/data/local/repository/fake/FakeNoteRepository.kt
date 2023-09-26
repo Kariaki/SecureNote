@@ -3,7 +3,7 @@ import com.getontop.candidate.kariaki.securenote.data.local.model.NoteModel
 import com.getontop.candidate.kariaki.securenote.domain.repository.NoteRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-class FakeNoteRepository():NoteRepository {
+class FakeNoteRepository:NoteRepository {
     private val notes:MutableList<NoteModel> = mutableListOf()
     override suspend fun insertNote(note: NoteModel) {
         val currentId = notes.size+1
