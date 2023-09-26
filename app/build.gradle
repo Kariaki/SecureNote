@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace 'com.getontop.candidate.kariaki.assessment'
+    namespace 'com.getontop.candidate.kariaki.securenote'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.getontop.candidate.kariaki.assessment"
+        applicationId "com.getontop.candidate.kariaki.securenote"
         minSdk 24
         targetSdk 33
         versionCode 1
@@ -99,9 +99,14 @@ dependencies {
 
     // optional - Guava support for Room, including Optional and ListenableFuture
     implementation "androidx.room:room-guava:$room_version"
-    implementation "androidx.room:room-runtime:2.3.0"
+    implementation "androidx.room:room-runtime:2.5.2"
+    testImplementation "com.google.truth:truth:1.0.1"
+
     // optional - Test helpers
     testImplementation("androidx.room:room-testing:$room_version")
+
+    //google gson
+    implementation "com.google.code.gson:gson:2.10.1"
 
 
 }

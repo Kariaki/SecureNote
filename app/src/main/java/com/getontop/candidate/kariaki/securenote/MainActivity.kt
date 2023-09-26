@@ -1,4 +1,4 @@
-package com.getontop.candidate.kariaki.assessment
+package com.getontop.candidate.kariaki.securenote
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,11 +10,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.getontop.candidate.kariaki.assessment.ui.theme.AssessmentTheme
+import com.getontop.candidate.kariaki.securenote.ui.theme.AssessmentTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             AssessmentTheme {
                 // A surface container using the 'background' color from the theme

@@ -1,4 +1,4 @@
-package com.getontop.candidate.kariaki.assessment.core
+package com.getontop.candidate.kariaki.securenote.core
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

@@ -1,4 +1,4 @@
-package com.getontop.candidate.kariaki.assessment.ui.theme
+package com.getontop.candidate.kariaki.securenote.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
