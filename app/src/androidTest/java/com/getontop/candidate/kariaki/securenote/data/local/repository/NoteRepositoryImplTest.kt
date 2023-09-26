@@ -13,10 +13,10 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import java.time.Instant
 @RunWith(AndroidJUnit4::class)
-class NoteRepositoryTest {
+class NoteRepositoryImplTest {
     private lateinit var database: AppRoomDatabase
     private lateinit var noteDao: NoteDao
-    private lateinit var repository: NoteRepository
+    private lateinit var repository: NoteRepositoryImpl
     @Before
     fun setup() {
         database = Room.inMemoryDatabaseBuilder(
@@ -24,7 +24,7 @@ class NoteRepositoryTest {
             AppRoomDatabase::class.java
         ).allowMainThreadQueries().build()
         noteDao = database.noteDao()
-        repository = NoteRepository(noteDao)
+        repository = NoteRepositoryImpl(noteDao)
     }
     @After
     fun tearDown() {

@@ -1,14 +1,17 @@
 package com.getontop.candidate.kariaki.securenote.di.hilt
+
 import android.content.Context
 import androidx.room.Room
 import com.getontop.candidate.kariaki.securenote.data.local.database.AppRoomDatabase
 import com.getontop.candidate.kariaki.securenote.data.local.database.dao.NoteDao
+import com.getontop.candidate.kariaki.securenote.domain.repository.NoteRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
+
 @InstallIn(SingletonComponent::class)
 @Module
 object HiltModule {
@@ -23,7 +26,18 @@ object HiltModule {
     )
         .fallbackToDestructiveMigration()
         .build()
+
     @Singleton
     @Provides
     fun provideNoteDao(database: AppRoomDatabase): NoteDao = database.noteDao()
+
+    @Singleton
+    @Provides
+    fun providesNoteRepository(
+        noteDao: NoteDao
+    ): NoteRepository {
+        return com.getontop.candidate.kariaki.securenote.data.local.repository.NoteRepositoryImpl(
+            noteDao
+        )
+    }
 }

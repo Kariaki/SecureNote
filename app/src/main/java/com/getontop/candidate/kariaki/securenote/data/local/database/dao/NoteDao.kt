@@ -21,4 +21,7 @@ interface NoteDao {
     @Query("select * from notes order by timestamp desc ")
     fun getAllNotes(): Flow<List<NoteModel>>
 
+    @Query("select * from notes where id like:noteId")
+    fun getNoteById(noteId:Int):NoteModel?
+
 }

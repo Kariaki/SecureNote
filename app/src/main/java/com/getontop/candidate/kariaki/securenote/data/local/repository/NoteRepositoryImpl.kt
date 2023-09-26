@@ -5,9 +5,10 @@ import com.getontop.candidate.kariaki.securenote.domain.repository.NoteRepositor
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class NoteRepository @Inject constructor(private val noteDao: NoteDao):NoteRepository {
+class NoteRepositoryImpl @Inject constructor(private val noteDao: NoteDao):NoteRepository {
     override suspend fun insertNote(note: NoteModel) = noteDao.insertNote(note)
     override suspend fun deleteNoteById(id: Int)  = noteDao.deleteNoteById(id)
     override suspend fun updateNote(note: NoteModel) = noteDao.updateNote(note)
     override fun getAllNotes(): Flow<List<NoteModel>>  = noteDao.getAllNotes()
+    override fun getNoteById(id: Int): NoteModel? = noteDao.getNoteById(id)
 }

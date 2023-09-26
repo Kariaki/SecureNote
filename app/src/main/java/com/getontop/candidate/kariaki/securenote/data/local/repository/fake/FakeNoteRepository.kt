@@ -21,4 +21,8 @@ class FakeNoteRepository:NoteRepository {
     override fun getAllNotes(): Flow<List<NoteModel>>  = flow {
         emit(notes)
     }
+
+    override fun getNoteById(id: Int): NoteModel? {
+        return notes.firstOrNull { it.id==id }
+    }
 }
