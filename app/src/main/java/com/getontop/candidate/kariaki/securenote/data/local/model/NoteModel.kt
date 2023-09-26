@@ -3,7 +3,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "notes")
-class NoteModel(
+data class NoteModel(
     val tittle: String,
     val description: String,
     @PrimaryKey(autoGenerate = true)
@@ -17,5 +17,4 @@ class NoteModel(
         timestamp: Long,
         createdAt: String
     ) : this(tittle, description,null,timestamp,createdAt)
-
 }

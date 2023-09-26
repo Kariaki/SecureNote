@@ -15,7 +15,7 @@ interface NoteDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertNote(note: NoteModel)
     @Query("delete  from notes where id like:noteId")
-    suspend fun deleteNote(noteId:Int)
+    suspend fun deleteNoteById(noteId:Int)
     @Update
     suspend fun updateNote(node: NoteModel)
     @Query("select * from notes order by timestamp desc ")

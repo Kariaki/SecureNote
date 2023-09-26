@@ -1,5 +1,4 @@
 package com.getontop.candidate.kariaki.securenote.di.hilt
-
 import android.content.Context
 import androidx.room.Room
 import com.getontop.candidate.kariaki.securenote.data.local.database.AppRoomDatabase
@@ -10,11 +9,9 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
-
 @InstallIn(SingletonComponent::class)
 @Module
 object HiltModule {
-
     @Singleton
     @Provides
     fun provideLocalDatabase(
@@ -29,5 +26,4 @@ object HiltModule {
     @Singleton
     @Provides
     fun provideNoteDao(database: AppRoomDatabase): NoteDao = database.noteDao()
-
 }
