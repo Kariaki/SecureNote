@@ -3,6 +3,7 @@ package com.getontop.candidate.kariaki.securenote.presentation.ui.routes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -22,9 +23,12 @@ import androidx.compose.material3.Snackbar
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -46,7 +50,6 @@ fun NotesScreen(navController: NavController, noteViewModel: NoteViewModel = hil
 
     val noteList = noteViewModel.notes.collectAsState(initial = emptyList()).value
     val snackbarHostState = SnackbarHostState()
-    val scope = rememberCoroutineScope()
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
@@ -63,16 +66,20 @@ fun NotesScreen(navController: NavController, noteViewModel: NoteViewModel = hil
                 containerColor = Color.Black,
             )
         }, containerColor = Color.White,
+
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
         modifier = androidx.compose.ui.Modifier.padding(top = 10.dp),
         content = {
             it.calculateTopPadding()
+
             Column(modifier = androidx.compose.ui.Modifier.fillMaxWidth()) {
                 Row(
                     horizontalArrangement = Arrangement.SpaceBetween,
-                    modifier = androidx.compose.ui.Modifier.fillMaxWidth()
+                    verticalAlignment = Alignment.Top,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 10.dp)
                 ) {
-                    20.spaceWidth()
                     Text(
                         "Notes",
                         style = TextStyle(fontSize = 25.sp, fontWeight = FontWeight.Bold),

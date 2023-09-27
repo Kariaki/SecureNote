@@ -8,9 +8,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.fragment.app.FragmentActivity
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.getontop.candidate.kariaki.securenote.presentation.ui.routes.BiometricRoute
 import com.getontop.candidate.kariaki.securenote.presentation.ui.routes.CreateNoteRoute
 import com.getontop.candidate.kariaki.securenote.presentation.ui.routes.NotesScreen
 import com.getontop.candidate.kariaki.securenote.presentation.ui.routes.Routes
@@ -18,7 +20,7 @@ import com.getontop.candidate.kariaki.securenote.presentation.ui.theme.Assessmen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
+class MainActivity : FragmentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,8 +42,8 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun startScreen(){
         val navController = rememberNavController()
-
-        NavHost(navController, startDestination = Routes.home) {
+        NavHost(navController, startDestination = Routes.biometric) {
+            composable(Routes.biometric){ BiometricRoute(navController = navController, activity = this@MainActivity)}
             composable(Routes.home) { NotesScreen(navController) }
             composable(Routes.createNote) { CreateNoteRoute(navController) }
         }
