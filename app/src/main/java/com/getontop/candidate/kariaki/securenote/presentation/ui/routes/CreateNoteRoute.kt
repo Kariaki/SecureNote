@@ -24,12 +24,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.getontop.candidate.kariaki.securenote.core.spaceHeight
+import com.getontop.candidate.kariaki.securenote.domain.dto.InsertNoteDto
+import com.getontop.candidate.kariaki.securenote.presentation.viewmodel.NoteViewModel
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CreateNewRoute() {
+fun CreateNoteRoute(navController: NavController, noteViewModel: NoteViewModel = hiltViewModel()) {
+    //navController.
     var titleText by remember {
         mutableStateOf("")
     }
@@ -44,11 +49,16 @@ fun CreateNewRoute() {
             .fillMaxSize()
     ) {
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-            IconButton(onClick = { /*TODO*/ }) {
+            IconButton(onClick = {
+                navController.popBackStack()
+            }) {
                 Icon(imageVector = Icons.Default.ArrowBack, contentDescription = null)
             }
             AnimatedVisibility(visible = displayCheck) {
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = {
+                    val insertNoteDto = InsertNoteDto(titleText,descriptionText)
+                    noteViewModel.insertNote(insertNoteDto)
+                }) {
                     Icon(imageVector = Icons.Default.Check, contentDescription = null)
                 }
             }
