@@ -15,6 +15,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -28,6 +29,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.getontop.candidate.kariaki.securenote.core.spaceHeight
 import com.getontop.candidate.kariaki.securenote.domain.dto.InsertNoteDto
+import com.getontop.candidate.kariaki.securenote.domain.dto.UpdateNoteDto
 import com.getontop.candidate.kariaki.securenote.presentation.viewmodel.NoteViewModel
 
 
@@ -35,14 +37,15 @@ import com.getontop.candidate.kariaki.securenote.presentation.viewmodel.NoteView
 @Composable
 fun CreateNoteRoute(navController: NavController, noteViewModel: NoteViewModel = hiltViewModel()) {
     //navController.
+    val currentNote = noteViewModel.currentNote.collectAsState().value
     var titleText by remember {
-        mutableStateOf("")
+        mutableStateOf(currentNote?.tittle?:"")
     }
     var descriptionText by remember {
-        mutableStateOf("")
+        mutableStateOf(currentNote?.description?:"")
     }
     var displayCheck by remember {
-        mutableStateOf(true)
+        mutableStateOf(false)
     }
     Column(
         modifier = Modifier
@@ -56,8 +59,16 @@ fun CreateNoteRoute(navController: NavController, noteViewModel: NoteViewModel =
             }
             AnimatedVisibility(visible = displayCheck) {
                 IconButton(onClick = {
-                    val insertNoteDto = InsertNoteDto(titleText,descriptionText)
-                    noteViewModel.insertNote(insertNoteDto)
+                    if(currentNote==null) {
+                        val insertNoteDto = InsertNoteDto(titleText, descriptionText)
+                        noteViewModel.insertNote(insertNoteDto)
+                        displayCheck =false
+                        return@IconButton
+                    }
+                    val updateNoteDto = UpdateNoteDto(titleText,descriptionText,currentNote.id)
+                    noteViewModel.updateNote(updateNoteDto)
+                    displayCheck=false
+                    return@IconButton
                 }) {
                     Icon(imageVector = Icons.Default.Check, contentDescription = null)
                 }
@@ -94,3 +105,4 @@ fun CreateNoteRoute(navController: NavController, noteViewModel: NoteViewModel =
     }
 
 }
+

@@ -8,13 +8,7 @@ import javax.inject.Inject
 class DeleteNoteUseCase @Inject constructor(
     private val repository: NoteRepository
 ) {
-    suspend operator fun invoke(param: Int) = flow {
-        emit(DataState.Loading())
-        try {
-            val result = repository.deleteNoteById(param)
-            emit(DataState.Success(result))
-        } catch (e: Exception) {
-            emit(DataState.Error(e.localizedMessage))
-        }
-    }
+    suspend operator fun invoke(param: Int)  =repository.deleteNoteById(param)
+
+
 }

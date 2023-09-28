@@ -1,5 +1,7 @@
 package com.getontop.candidate.kariaki.securenote.core
 
+import android.content.Context
+import android.net.Uri
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
@@ -9,7 +11,14 @@ import androidx.compose.ui.unit.dp
 import com.getontop.candidate.kariaki.securenote.data.local.model.NoteModel
 import com.getontop.candidate.kariaki.securenote.domain.dto.InsertNoteDto
 import com.getontop.candidate.kariaki.securenote.domain.dto.NoteDto
-import java.time.Instant
+import com.getontop.candidate.kariaki.securenote.domain.dto.UploadNoteDto
+import com.google.gson.Gson
+import java.io.BufferedReader
+import java.io.FileNotFoundException
+import java.io.IOException
+import java.io.InputStream
+import java.io.InputStreamReader
+
 fun NoteModel.toNoteDto(): NoteDto =
     NoteDto(this.tittle, this.description, this.id!!, this.timestamp, this.createdAt!!)
 fun InsertNoteDto.toNoteModel():NoteModel{
@@ -17,6 +26,43 @@ fun InsertNoteDto.toNoteModel():NoteModel{
     return NoteModel(this.title, this.description, timestamp =  now, createdAt =  "")
 }
 
+fun UploadNoteDto.toInsertNoteDto():InsertNoteDto{
+    return InsertNoteDto(title, description)
+}
+fun String.toNoteList(): Array<UploadNoteDto> {
+    return Gson()
+          .fromJson(this, Array<UploadNoteDto>::class.java)
+          ?: throw Exception("Unable to convert data")
+}
+ fun Uri.extractString(context: Context): String {
+    var reader1: BufferedReader? = null
+    try {
+        val `in`: InputStream? =
+            context.contentResolver.openInputStream(this)
+        reader1 = BufferedReader(InputStreamReader(`in`))
+        var line: String?
+        val builder = StringBuilder()
+        while (reader1.readLine().also { line = it } != null) {
+            builder.append(line)
+        }
+        return builder.toString()
+    } catch (e: FileNotFoundException) {
+        e.printStackTrace()
+    } catch (e: IOException) {
+        e.printStackTrace()
+    } finally {
+        if (reader1 != null) {
+            try {
+                reader1.close()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    return ""
+
+}
 @Composable
 fun Int.spaceHeight(){
     Spacer(modifier = Modifier.height(this.dp))

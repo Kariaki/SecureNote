@@ -1,5 +1,6 @@
 package com.getontop.candidate.kariaki.securenote.domain.usecases
 
+import android.util.Log
 import com.getontop.candidate.kariaki.securenote.core.DataState
 import com.getontop.candidate.kariaki.securenote.core.toNoteModel
 import com.getontop.candidate.kariaki.securenote.domain.dto.NoteDto
