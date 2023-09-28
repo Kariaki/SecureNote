@@ -8,13 +8,7 @@ import javax.inject.Inject
 class InsertNoteUseCase @Inject constructor(
     private val repository: NoteRepository
 ) {
-    suspend operator fun invoke(param:InsertNoteDto)= flow {
-        emit(DataState.Loading())
-        try {
-            val result =  repository.insertNote(param.toNoteModel())
-            emit(DataState.Success(result))
-        }catch (e:Exception){
-            emit(DataState.Error(e.localizedMessage))
-        }
+    suspend operator fun invoke(param:InsertNoteDto){
+        repository.insertNote(param.toNoteModel())
     }
 }

@@ -22,6 +22,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
@@ -38,8 +39,9 @@ fun BiometricRoute(navController: NavController, activity: FragmentActivity) {
         .setAllowedAuthenticators(BIOMETRIC_STRONG or BiometricManager.Authenticators.DEVICE_CREDENTIAL)
         .build()
 
+    val context = LocalContext.current
     val biometricPrompt =
-        BiometricPrompt(activity, ContextCompat.getMainExecutor(navController.context),
+        BiometricPrompt(activity, ContextCompat.getMainExecutor(context),
             object : BiometricPrompt.AuthenticationCallback() {
                 override fun onAuthenticationError(
                     errorCode: Int,
@@ -57,7 +59,7 @@ fun BiometricRoute(navController: NavController, activity: FragmentActivity) {
                     super.onAuthenticationFailed()
                 }
             })
-    val biometricManager = BiometricManager.from(navController.context)
+    val biometricManager = BiometricManager.from(context)
     val canAuthenticate = biometricManager.canAuthenticate(BIOMETRIC_STRONG or BiometricManager.Authenticators.DEVICE_CREDENTIAL)
     if(canAuthenticate!=BiometricManager.BIOMETRIC_SUCCESS){
         navController.navigate(Routes.home)

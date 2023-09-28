@@ -47,13 +47,13 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NotesScreen(navController: NavController, noteViewModel: NoteViewModel = hiltViewModel()) {
-
     val noteList = noteViewModel.notes.collectAsState(initial = emptyList()).value
     val snackbarHostState = SnackbarHostState()
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
+                    noteViewModel.createOrUpdateNote()
                     navController.navigate(Routes.createNote)
                 },
                 content = {
@@ -66,13 +66,11 @@ fun NotesScreen(navController: NavController, noteViewModel: NoteViewModel = hil
                 containerColor = Color.Black,
             )
         }, containerColor = Color.White,
-
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
         modifier = androidx.compose.ui.Modifier.padding(top = 10.dp),
         content = {
             it.calculateTopPadding()
-
-            Column(modifier = androidx.compose.ui.Modifier.fillMaxWidth()) {
+            Column(modifier = Modifier.fillMaxWidth()) {
                 Row(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.Top,
@@ -86,7 +84,9 @@ fun NotesScreen(navController: NavController, noteViewModel: NoteViewModel = hil
                         color = Color.Black
                     )
                     IconButton(
-                        onClick = {},
+                        onClick = {
+                                  navController.navigate(Routes.download)
+                        },
                         content = {
                             Icon(
                                 painter = painterResource(R.drawable.outline_cloud_download_24),
@@ -104,6 +104,7 @@ fun NotesScreen(navController: NavController, noteViewModel: NoteViewModel = hil
                         NoteComponent(note, onDelete = {
                             noteViewModel.deleteNote(note.id)
                         }) {
+                            noteViewModel.createOrUpdateNote(note)
                             navController.navigate(Routes.createNote)
                         }
                     }

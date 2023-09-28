@@ -8,5 +8,5 @@ interface NoteRepository {
     suspend fun deleteNoteById(id:Int)
     suspend fun updateNote(note: NoteModel)
     fun getAllNotes():Flow<List<NoteModel>>
-    fun getNoteById(id: Int):NoteModel?
+    suspend fun getNoteById(id: Int):NoteModel?
 }

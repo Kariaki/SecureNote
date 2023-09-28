@@ -28,7 +28,7 @@ class FakeNoteRepository:NoteRepository {
         emit(notes)
     }
 
-    override fun getNoteById(id: Int): NoteModel? {
+    override suspend fun getNoteById(id: Int): NoteModel? {
         return notes.firstOrNull { it.id==id }
     }
 }
