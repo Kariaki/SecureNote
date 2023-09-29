@@ -9,12 +9,10 @@ data class NoteModel(
     @PrimaryKey(autoGenerate = true)
     val id: Int? = null,
     val timestamp:Long = 0,
-    val createdAt:String? =null,
 ) {
     constructor(
         tittle: String,
         description: String,
         timestamp: Long,
-        createdAt: String
-    ) : this(tittle, description,null,timestamp,createdAt)
+    ) : this(tittle, description,null,timestamp)
 }

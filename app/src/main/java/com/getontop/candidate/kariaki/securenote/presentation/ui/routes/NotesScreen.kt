@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -18,6 +19,7 @@ import androidx.compose.material3.FabPosition
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Snackbar
 import androidx.compose.material3.SnackbarHost
@@ -98,6 +100,18 @@ fun NotesScreen(navController: NavController, noteViewModel: NoteViewModel = hil
                             )
                         })
                 }
+                if(noteList.isEmpty()){
+                    Column(
+                        modifier = Modifier.fillMaxSize()
+                        , horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement =Arrangement.Center
+                    ) {
+                        Text(text = "Ooops! You don't have any notes", style = MaterialTheme.typography.titleLarge)
+                        5.spaceHeight()
+                        Text(text = "Click the + button to create one", style = MaterialTheme.typography.bodyMedium)
+                    }
+                }
+
                 10.spaceHeight()
                 LazyColumn() {
                     items(noteList) { note ->

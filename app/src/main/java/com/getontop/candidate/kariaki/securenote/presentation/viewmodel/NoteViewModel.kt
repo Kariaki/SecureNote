@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.getontop.candidate.kariaki.securenote.core.DataState
 import com.getontop.candidate.kariaki.securenote.core.extractString
-import com.getontop.candidate.kariaki.securenote.core.toInsertNoteDto
 import com.getontop.candidate.kariaki.securenote.core.toNoteList
 import com.getontop.candidate.kariaki.securenote.domain.dto.InsertNoteDto
 import com.getontop.candidate.kariaki.securenote.domain.dto.NoteDto
@@ -58,8 +57,7 @@ class NoteViewModel @Inject constructor(
                 .toNoteList()
             for (i in noteList) {
                 delay(200)
-                val insertNoteDto = i.toInsertNoteDto()
-                baseUseCase.insertNoteUseCase.invoke(insertNoteDto)
+                baseUseCase.insertNoteUseCase.invoke(i)
             }
             _uploadNoteState.emit(DataState.Success(_unit()))
         }catch (e:JsonFileFormatException){
