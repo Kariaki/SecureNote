@@ -15,7 +15,6 @@ To setup your project you require the following:
 • Create, Update and Delte notes
 
 # Project scope
-
 • Jetpack compose
 • MVVM clean architecture with domain layer
 • Room database and testing room Database
@@ -23,3 +22,9 @@ To setup your project you require the following:
 • Unit testing
 • Dependency inject with dagger hilt
 
+# Project output Screenshots
+![](screenshots/sc1.jpg)
+
+![](screenshots/sc3.jpg)
+
+![](screenshots/sc4.jpg)
