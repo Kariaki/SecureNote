@@ -11,7 +11,6 @@ import com.getontop.candidate.kariaki.securenote.core.toInsertNoteDto
 import com.getontop.candidate.kariaki.securenote.core.toNoteList
 import com.getontop.candidate.kariaki.securenote.domain.dto.InsertNoteDto
 import com.getontop.candidate.kariaki.securenote.domain.dto.NoteDto
-import com.getontop.candidate.kariaki.securenote.domain.dto.UpdateNoteDto
 import com.getontop.candidate.kariaki.securenote.domain.usecases.BaseUseCase
 import com.getontop.candidate.kariaki.securenote.exceptions.JsonFileFormatException
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -43,7 +42,7 @@ class NoteViewModel @Inject constructor(
     fun insertNote(note: InsertNoteDto) = viewModelScope.launch {
         baseUseCase.insertNoteUseCase.invoke(note)
     }
-    fun updateNote(note: UpdateNoteDto) = viewModelScope.launch {
+    fun updateNote(note: InsertNoteDto) = viewModelScope.launch {
         Log.d("Update note","note updated")
         baseUseCase.updateNoteUseCase.invoke(note).collectLatest {
             _noteActionState.emit(it)

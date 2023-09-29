@@ -15,7 +15,6 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -31,7 +30,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.getontop.candidate.kariaki.securenote.core.spaceHeight
 import com.getontop.candidate.kariaki.securenote.domain.dto.InsertNoteDto
-import com.getontop.candidate.kariaki.securenote.domain.dto.UpdateNoteDto
 import com.getontop.candidate.kariaki.securenote.presentation.viewmodel.NoteViewModel
 
 
@@ -49,34 +47,7 @@ fun CreateNoteRoute(navController: NavController, noteViewModel: NoteViewModel =
     var displayCheck by remember {
         mutableStateOf(false)
     }
-   Scaffold (
-       topBar = {
-
-           Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-               IconButton(onClick = {
-                   navController.popBackStack()
-               }) {
-                   Icon(imageVector = Icons.Default.ArrowBack, contentDescription = null)
-               }
-               AnimatedVisibility(visible = displayCheck) {
-                   IconButton(onClick = {
-                       if(currentNote==null) {
-                           val insertNoteDto = InsertNoteDto(titleText, descriptionText)
-                           noteViewModel.insertNote(insertNoteDto)
-                           displayCheck =false
-                           return@IconButton
-                       }
-                       val updateNoteDto = UpdateNoteDto(titleText,descriptionText,currentNote.id)
-                       noteViewModel.updateNote(updateNoteDto)
-                       displayCheck=false
-                       return@IconButton
-                   }) {
-                       Icon(imageVector = Icons.Default.Check, contentDescription = null)
-                   }
-               }
-           }
-       }
-   ){
+   Scaffold {
        it.calculateTopPadding()
        Column(
            modifier = Modifier
@@ -96,7 +67,7 @@ fun CreateNoteRoute(navController: NavController, noteViewModel: NoteViewModel =
                            displayCheck =false
                            return@IconButton
                        }
-                       val updateNoteDto = UpdateNoteDto(titleText,descriptionText,currentNote.id)
+                       val updateNoteDto = InsertNoteDto(titleText,descriptionText,currentNote.id)
                        noteViewModel.updateNote(updateNoteDto)
                        displayCheck=false
                        return@IconButton
