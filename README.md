@@ -23,8 +23,3 @@ To setup your project you require the following:
 • Unit testing
 • Dependency inject with dagger hilt
 
- # Screenshots
- Find the screenshots to the project below.
-![](screenshots/sc1.png)
-![](screenshots/sc2.png)
-![](screenshots/sc3.png)
