@@ -7,6 +7,7 @@ To setup your project you require the following:
 
 • Android studio 2023 Giraffe
 • Setup gradle build with jetpack compose
+• An Android emulator or physical mobile device with android version 7 and above.
 
 # Features Implemented
 • Download note from Json file
