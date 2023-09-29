@@ -25,4 +25,4 @@ To setup your project you require the following:
 
  # Screenshots
  Find the screenshots to the project below.
-   
+![](screenshots/sc1.png) ![](screenshots/sc2.png) ![](screenshots/sc3.png)
