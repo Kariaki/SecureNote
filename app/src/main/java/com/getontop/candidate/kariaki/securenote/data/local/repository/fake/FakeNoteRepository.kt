@@ -6,10 +6,10 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 class FakeNoteRepository:NoteRepository {
     private val notes:MutableList<NoteModel> = mutableListOf(
-        NoteModel("Spotify password","the password for spotify is askyourdaddy12345",0,0,"13:12"),
-        NoteModel("Shopping list","he said I should bring everything from the store and get the job done",1,0,"09:23"),
-        NoteModel("Todo for digicore task","the back-office-app is not even useful",2,0,"06:12"),
-        NoteModel("","I hope everything is great though, just trying to check on you",3,0,"yesterday")
+        NoteModel("Spotify password","the password for spotify is askyourdaddy12345",0,0,),
+        NoteModel("Shopping list","he said I should bring everything from the store and get the job done",1,0,),
+        NoteModel("Todo for digicore task","the back-office-app is not even useful",2,0),
+        NoteModel("","I hope everything is great though, just trying to check on you",3,0)
     )
     override suspend fun insertNote(note: NoteModel) {
         val currentId = notes.size+1

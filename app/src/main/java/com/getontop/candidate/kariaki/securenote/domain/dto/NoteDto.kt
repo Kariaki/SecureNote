@@ -7,9 +7,4 @@ data class NoteDto(
     val description: String,
     val id: Int,
     val timestamp:Long,
-    val createdAt:String
-){
-    fun getHumanReadableDate():String{
-        return createdAt
-    }
-}
+)

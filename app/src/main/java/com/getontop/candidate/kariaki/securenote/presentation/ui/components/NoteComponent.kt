@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.getontop.candidate.kariaki.securenote.R
 import com.getontop.candidate.kariaki.securenote.core.spaceHeight
+import com.getontop.candidate.kariaki.securenote.core.spaceWidth
 import com.getontop.candidate.kariaki.securenote.domain.dto.NoteDto
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -68,10 +69,7 @@ fun NoteComponent(noteDto: NoteDto, onDelete: () -> Unit, onClick: (NoteDto) -> 
                 horizontalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text(
-                    noteDto.getHumanReadableDate(),
-                    style = TextStyle(fontSize = 12.sp, fontStyle = FontStyle.Italic)
-                )
+                0.spaceWidth()
                 IconButton(
                     onClick = {
                         onDelete()

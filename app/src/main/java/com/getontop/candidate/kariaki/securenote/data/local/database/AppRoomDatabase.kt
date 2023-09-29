@@ -9,7 +9,7 @@ import com.getontop.candidate.kariaki.securenote.data.local.model.NoteModel
 @Database(
     entities = [NoteModel::class],
     exportSchema = false,
-    version = 1
+    version = 2
 )
 abstract class AppRoomDatabase : RoomDatabase() {
     abstract fun noteDao(): NoteDao

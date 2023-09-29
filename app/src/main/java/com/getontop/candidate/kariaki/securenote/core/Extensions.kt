@@ -11,7 +11,6 @@ import androidx.compose.ui.unit.dp
 import com.getontop.candidate.kariaki.securenote.data.local.model.NoteModel
 import com.getontop.candidate.kariaki.securenote.domain.dto.InsertNoteDto
 import com.getontop.candidate.kariaki.securenote.domain.dto.NoteDto
-import com.getontop.candidate.kariaki.securenote.domain.dto.UploadNoteDto
 import com.getontop.candidate.kariaki.securenote.exceptions.JsonFileFormatException
 import com.google.gson.Gson
 import java.io.BufferedReader
@@ -21,19 +20,16 @@ import java.io.InputStream
 import java.io.InputStreamReader
 
 fun NoteModel.toNoteDto(): NoteDto =
-    NoteDto(this.tittle, this.description, this.id!!, this.timestamp, this.createdAt!!)
+    NoteDto(this.tittle, this.description, this.id!!, this.timestamp)
 fun InsertNoteDto.toNoteModel():NoteModel{
     val now = System.currentTimeMillis()
-    return NoteModel(this.title, this.description, timestamp =  now, createdAt =  "")
+    return NoteModel(this.title, this.description, timestamp =  now)
 }
 
-fun UploadNoteDto.toInsertNoteDto():InsertNoteDto{
-    return InsertNoteDto(title, description)
-}
-fun String.toNoteList(): Array<UploadNoteDto> {
+fun String.toNoteList(): Array<InsertNoteDto> {
     try {
        return Gson()
-            .fromJson(this, Array<UploadNoteDto>::class.java)
+            .fromJson(this, Array<InsertNoteDto>::class.java)
             ?: throw Exception("Unable to convert data")
     }catch (e:Exception){
         throw JsonFileFormatException()
