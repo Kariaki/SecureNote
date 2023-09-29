@@ -23,8 +23,8 @@ To setup your project you require the following:
 • Dependency inject with dagger hilt
 
 # Project output Screenshots
-![](screenshots/sc1.jpg)
+![](screenshots/sc1.jpg){:width= "200" height="300"}
 
-![](screenshots/sc3.jpg)
+![](screenshots/sc3.jpg){:width= "200" height="300"}
 
-![](screenshots/sc4.jpg)
+![](screenshots/sc4.jpg){:width= "200" height="300"}
